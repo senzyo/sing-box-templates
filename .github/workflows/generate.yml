@@ -1,0 +1,111 @@
+name: Generate Templates
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+
+jobs:
+  deploy-normal:
+    name: Deploy Normal
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global init.defaultBranch normal
+      - name: Generate Templates
+        run: |
+          curl -fsSLo generate.sh https://raw.githubusercontent.com/senzyo/sing-box-templates/master/generate.sh
+          curl -fsSLo mixed-normal.json https://raw.githubusercontent.com/senzyo/sing-box-templates/master/mixed-normal.json
+          curl -fsSLo tun-normal.json https://raw.githubusercontent.com/senzyo/sing-box-templates/master/tun-normal.json
+          chmod +x generate.sh
+          ./generate.sh mixed-normal.json mixed
+          wait
+          ./generate.sh tun-normal.json tun
+      - name: Public Templates
+        run: |
+          git init
+          git add -A mixed tun
+          git commit -m "Init"
+          git remote add origin https://${{ secrets.PERSONAL_TOKEN }}@github.com/senzyo/sing-box-templates.git
+          git push -uf origin normal:normal
+
+  deploy-cmcc:
+    name: Deploy CMCC
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global init.defaultBranch cmcc
+      - name: Generate Templates
+        run: |
+          curl -fsSLo generate.sh https://raw.githubusercontent.com/senzyo/sing-box-templates/master/generate.sh
+          curl -fsSLo mixed-cmcc.json https://raw.githubusercontent.com/senzyo/sing-box-templates/master/mixed-cmcc.json
+          curl -fsSLo tun-cmcc.json https://raw.githubusercontent.com/senzyo/sing-box-templates/master/tun-cmcc.json
+          chmod +x generate.sh
+          ./generate.sh mixed-cmcc.json mixed
+          wait
+          ./generate.sh tun-cmcc.json tun
+      - name: Public Templates
+        run: |
+          git init
+          git add -A mixed tun
+          git commit -m "Init"
+          git remote add origin https://${{ secrets.PERSONAL_TOKEN }}@github.com/senzyo/sing-box-templates.git
+          git push -uf origin cmcc:cmcc
+
+  deploy-ctcc:
+    name: Deploy CTCC
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global init.defaultBranch ctcc
+      - name: Generate Templates
+        run: |
+          curl -fsSLo generate.sh https://raw.githubusercontent.com/senzyo/sing-box-templates/master/generate.sh
+          curl -fsSLo mixed-ctcc.json https://raw.githubusercontent.com/senzyo/sing-box-templates/master/mixed-ctcc.json
+          curl -fsSLo tun-ctcc.json https://raw.githubusercontent.com/senzyo/sing-box-templates/master/tun-ctcc.json
+          chmod +x generate.sh
+          ./generate.sh mixed-ctcc.json mixed
+          wait
+          ./generate.sh tun-ctcc.json tun
+      - name: Public Templates
+        run: |
+          git init
+          git add -A mixed tun
+          git commit -m "Init"
+          git remote add origin https://${{ secrets.PERSONAL_TOKEN }}@github.com/senzyo/sing-box-templates.git
+          git push -uf origin ctcc:ctcc
+
+  deploy-cucc:
+    name: Deploy CUCC
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global init.defaultBranch cucc
+      - name: Generate Templates
+        run: |
+          curl -fsSLo generate.sh https://raw.githubusercontent.com/senzyo/sing-box-templates/master/generate.sh
+          curl -fsSLo mixed-cucc.json https://raw.githubusercontent.com/senzyo/sing-box-templates/master/mixed-cucc.json
+          curl -fsSLo tun-cucc.json https://raw.githubusercontent.com/senzyo/sing-box-templates/master/tun-cucc.json
+          chmod +x generate.sh
+          ./generate.sh mixed-cucc.json mixed
+          wait
+          ./generate.sh tun-cucc.json tun
+      - name: Public Templates
+        run: |
+          git init
+          git add -A mixed tun
+          git commit -m "Init"
+          git remote add origin https://${{ secrets.PERSONAL_TOKEN }}@github.com/senzyo/sing-box-templates.git
+          git push -uf origin cucc:cucc
