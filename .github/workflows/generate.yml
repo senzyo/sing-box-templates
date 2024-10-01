@@ -1,0 +1,35 @@
+name: Generate Templates
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master, test]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global init.defaultBranch public
+      - name: Generate Templates
+        run: |
+          git clone --branch master https://github.com/senzyo/sing-box-templates.git master
+          cd master
+          chmod +x generate.sh
+          ./generate.sh mixed.json ../public/mixed config.json
+          ./generate.sh tun.json ../public/tun config.json
+          ./generate.sh tun_fakeip.json ../public/tun config_fakeip.json
+          ./generate.sh tun_fakeip_ipv4_only.json ../public/tun config_fakeip_ipv4_only.json
+          ./generate.sh tun_apple.json ../public/tun config_apple.json
+      - name: Public Templates
+        run: |
+          cd public
+          git init
+          git add -A mixed tun
+          git commit -m "更新于 $(TZ='UTC-8' date -I'seconds')"
+          git remote add origin https://${{ secrets.PERSONAL_TOKEN }}@github.com/senzyo/sing-box-templates.git
+          git push -uf origin public:public
