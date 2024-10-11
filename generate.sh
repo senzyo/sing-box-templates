@@ -54,7 +54,7 @@ declare -A opendns=(
 )
 
 CDN_Prefix=(
-  https://mirror.ghproxy.com/https://raw.githubusercontent.com/senzyo/sing-box-rules/master/
+  https://ghp.ci/https://raw.githubusercontent.com/senzyo/sing-box-rules/master/
   https://ghproxy.net/https://raw.githubusercontent.com/senzyo/sing-box-rules/master/
   https://fastly.jsdelivr.net/gh/senzyo/sing-box-rules@master/
   https://gcore.jsdelivr.net/gh/senzyo/sing-box-rules@master/

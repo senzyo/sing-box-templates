@@ -31,7 +31,7 @@
 
 url_gene="https://a.com"  # 生成配置的后端地址
 url_sub="https://b.com"   # 来自机场的订阅链接
-url_tpl="https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/mirror.ghproxy.com/config.json"  # 配置所用模板的地址
+url_tpl="https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/ghp.ci/config.json"  # 配置所用模板的地址
 url_dl="$url_gene/config/$url_sub&ua=clashmeta&emoji=1&file=$url_tpl"
 echo $url_dl
 curl -L -o config.json "$url_dl"
@@ -52,19 +52,19 @@ curl -L -o config.json "$url_dl"
 推荐使用入站方式为 `tun` 的模板:
 
 ```
-https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/mirror.ghproxy.com/config.json
+https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/ghp.ci/config.json
 ```
 
 如果要使用 [FakeIP](https://sing-box.sagernet.org/zh/configuration/dns/fakeip/), 选择:
 
 ```
-https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/mirror.ghproxy.com/config_fakeip.json
+https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/ghp.ci/config_fakeip.json
 ```
 
 或者使用入站方式为 `mixed` 的模板:
 
 ```
-https://raw.githubusercontent.com/senzyo/sing-box-templates/public/mixed/doh/ali/google/mirror.ghproxy.com/config.json
+https://raw.githubusercontent.com/senzyo/sing-box-templates/public/mixed/doh/ali/google/ghp.ci/config.json
 ```
 
 ### 2.2 Android 和 Apple
@@ -72,26 +72,26 @@ https://raw.githubusercontent.com/senzyo/sing-box-templates/public/mixed/doh/ali
 只推荐使用入站方式为 `tun` 的模板:
 
 ```
-https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/mirror.ghproxy.com/config.json
+https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/ghp.ci/config.json
 ```
 
 如果要使用 [FakeIP](https://sing-box.sagernet.org/zh/configuration/dns/fakeip/), 选择:
 
 ```
-https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/mirror.ghproxy.com/config_fakeip.json
+https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/ghp.ci/config_fakeip.json
 ```
 
 ## 3. 模板分类
 
 文件的存储路径按照 "入站方式 → DNS 协议 → 中国 DNS 服务商 → 国际 DNS 服务商 → 规则集 CDN → 配置文件名称" 进行层级划分。
 
-比如对于 `https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/mirror.ghproxy.com/config.json`, 即 `https://raw.githubusercontent.com/senzyo/sing-box-templates/<Git 分支名称>/<入站方式>/<DNS 协议>/<中国 DNS 服务商>/<国际 DNS 服务商>/<规则集 CDN>/<配置文件名称>`。
+比如对于 `https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/google/ghp.ci/config.json`, 即 `https://raw.githubusercontent.com/senzyo/sing-box-templates/<Git 分支名称>/<入站方式>/<DNS 协议>/<中国 DNS 服务商>/<国际 DNS 服务商>/<规则集 CDN>/<配置文件名称>`。
 
 - `入站方式` 的可选值: `mixed`, `tun`
 - `DNS 协议` 的可选值: `doh`, `doq`, `dot`, `h3`
 - `中国 DNS 服务商` 的可选值: `ali`, `dnspod`
 - `国际 DNS 服务商` 的可选值: `adguard`, `cloudflare`, `google`, `opendns`
-- `规则集 CDN` 的可选值: `mirror.ghproxy.com`, `ghproxy.net`, `fastly.jsdelivr.net`, `gcore.jsdelivr.net`, `testingcf.jsdelivr.net`
+- `规则集 CDN` 的可选值: `ghp.ci`, `ghproxy.net`, `fastly.jsdelivr.net`, `gcore.jsdelivr.net`, `testingcf.jsdelivr.net`
 - `配置文件名称` 的可选值: 
   - 对于 `入站方式` 为 `mixed` 的, 可选值: `config.json`
   - 对于 `入站方式` 为 `tun` 的, 可选值: `config.json`, `config_fakeip.json`
@@ -208,7 +208,7 @@ DNS 协议使用 `DNS over HTTPS` 或 `DNS over QUIC` 或 `DNS over TLS` 或 `DN
       "tag": "download-process",
       "type": "remote",
       "format": "binary",
-      "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/senzyo/sing-box-rules/master/download-process.srs",
+      "url": "https://ghp.ci/https://raw.githubusercontent.com/senzyo/sing-box-rules/master/download-process.srs",
       "download_detour": "🐢 直连",
       "update_interval": "3d"
     },
@@ -226,7 +226,7 @@ https://raw.githubusercontent.com/senzyo/sing-box-rules/master/download-process.
 CDN 地址列举:
 
 ```
-https://mirror.ghproxy.com/https://raw.githubusercontent.com/senzyo/sing-box-rules/master/download-process.srs
+https://ghp.ci/https://raw.githubusercontent.com/senzyo/sing-box-rules/master/download-process.srs
 ```
 
 ```
