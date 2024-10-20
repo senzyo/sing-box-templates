@@ -5,7 +5,13 @@
         自己用的一些 <a href="https://sing-box.sagernet.org/zh/">sing-box</a> 配置文件模板, 支持 <a href="https://github.com/Toperlock/sing-box-subscribe">Toperlock/sing-box-subscribe</a> 远程调用。<br />
         <strong>模板仅适用于客户端, 不适用于服务器和路由器。</strong>
     </p>
-</p><br />
+</p>
+
+<h3>
+    <p align="center">
+        ⚠️ 要求 sing-box 版本 ≥ <a href="https://sing-box.sagernet.org/zh/changelog/#1100">1.10.0</a> ⚠️
+    </p>
+</h3>
 
 - [1. 使用示例](#1-使用示例)
 - [2 模板推荐](#2-模板推荐)
@@ -104,8 +110,7 @@ https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/g
 "inbounds": [
   {
     "type": "tun",
-    "inet4_address": "172.19.0.1/30",
-    "inet6_address": "fdfe:dcba:9876::1/126",
+    "address": "172.19.0.1/30",
     "gso": false,
     "auto_route": true,
     "strict_route": true,
@@ -124,7 +129,7 @@ https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/g
   },
   {
     "type": "mixed",
-    "listen": "::",
+    "listen": "127.0.0.1",
     "listen_port": 7890,
     "sniff": true,
     "sniff_override_destination": false
@@ -251,7 +256,7 @@ https://testingcf.jsdelivr.net/gh/senzyo/sing-box-rules@master/download-process.
 
 ### 4.1 下载进程分流
 
-由于暂时无法准确分流 BitTorrent 流量, 干脆匹配 [下载软件的进程](https://raw.githubusercontent.com/senzyo/sing-box-rules/master/downloader.json) 来一刀切。使用 Bittorrent 方式下载时, 手动切换 `📥 Downloader` 分组的策略, 改用 `🐢 直连`。
+sing-box [v1.10.0](https://sing-box.sagernet.org/zh/configuration/route/sniff/) 已经支持嗅探 bittorrent 协议, 但对于作为客户端的 sing-box 来说, 无法分流 P2P 阶段的流量 (也可能是我菜), 干脆沿袭以前的做法, 匹配 [下载软件的进程](https://raw.githubusercontent.com/senzyo/sing-box-rules/master/downloader.json) 来一刀切。使用 Bittorrent 方式下载时, 手动切换 `📥 Downloader` 分组的策略, 改用 `🐢 直连`。
 
 ### 4.2 TUN 模式的问题
 

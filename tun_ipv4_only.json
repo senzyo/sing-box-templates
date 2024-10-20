@@ -74,7 +74,7 @@
   "inbounds": [
     {
       "type": "tun",
-      "inet4_address": "172.19.0.1/30",
+      "address": "172.19.0.1/30",
       "gso": false,
       "auto_route": true,
       "strict_route": true,
@@ -93,7 +93,7 @@
     },
     {
       "type": "mixed",
-      "listen": "::",
+      "listen": "127.0.0.1",
       "listen_port": 7890,
       "sniff": true,
       "sniff_override_destination": false
@@ -476,6 +476,10 @@
           "senzyo.net"
         ],
         "outbound": "🚀 默认出站"
+      },
+      {
+        "protocol": "bittorrent",
+        "outbound": "🐢 直连"
       },
       {
         "type": "logical",

@@ -459,6 +459,10 @@
         "outbound": "🚀 默认出站"
       },
       {
+        "protocol": "bittorrent",
+        "outbound": "🐢 直连"
+      },
+      {
         "type": "logical",
         "mode": "and",
         "rules": [
