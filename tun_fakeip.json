@@ -485,7 +485,17 @@
         "outbound": "🚀 默认出站"
       },
       {
-        "process_name": ["ssh", "ssh.exe", "ssh-agent.exe"],
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "process_name": ["ssh", "ssh.exe", "ssh-agent.exe"]
+          },
+          {
+            "rule_set": ["geoip_cn", "geosite_cn"],
+            "invert": true
+          }
+        ],
         "outbound": "🖥️ SSH"
       },
       {

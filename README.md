@@ -260,7 +260,7 @@ sing-box [v1.10.0](https://sing-box.sagernet.org/zh/configuration/route/sniff/) 
 
 ### 4.2 TUN 模式的问题
 
-根据 [issue#883](https://github.com/SagerNet/sing-box/issues/883), 如果在 TUN 模式下无法使用进行 SSH 访问, , 需要关闭严格路由:
+根据 [issue#883](https://github.com/SagerNet/sing-box/issues/883), 如果在 TUN 模式下无法使用进行 SSH 访问, 需要关闭严格路由:
 
 ```json
 "inbounds": [
