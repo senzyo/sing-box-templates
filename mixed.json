@@ -41,21 +41,25 @@
     "rules": [
       {
         "outbound": "any",
+        "action": "route",
         "server": "中国 DNS",
         "rewrite_ttl": 3600
       },
       {
         "clash_mode": "direct",
+        "action": "route",
         "server": "中国 DNS",
         "rewrite_ttl": 3600
       },
       {
         "clash_mode": "global",
+        "action": "route",
         "server": "国际 DNS",
         "rewrite_ttl": 3600
       },
       {
         "rule_set": "geosite_cn",
+        "action": "route",
         "server": "中国 DNS",
         "rewrite_ttl": 3600
       }
@@ -70,10 +74,9 @@
   "inbounds": [
     {
       "type": "mixed",
+      "tag": "mixed-in",
       "listen": "::",
-      "listen_port": 7890,
-      "sniff": true,
-      "sniff_override_destination": false
+      "listen_port": 7890
     }
   ],
   "outbounds": [
@@ -328,10 +331,6 @@
     {
       "tag": "🐢 直连",
       "type": "direct"
-    },
-    {
-      "tag": "内部 DNS",
-      "type": "dns"
     }
   ],
   "route": {
@@ -339,6 +338,10 @@
     "override_android_vpn": true,
     "final": "🚀 默认出站",
     "rules": [
+      {
+        "inbound": "mixed-in",
+        "action": "sniff"
+      },
       {
         "type": "logical",
         "mode": "or",
@@ -350,22 +353,26 @@
             "port": 53
           }
         ],
-        "outbound": "内部 DNS"
+        "action": "hijack-dns"
       },
       {
         "ip_is_private": true,
+        "action": "route",
         "outbound": "🐢 直连"
       },
       {
         "process_name": ["localsend", "localsend_app.exe"],
+        "action": "route",
         "outbound": "🐢 直连"
       },
       {
         "clash_mode": "direct",
+        "action": "route",
         "outbound": "🐢 直连"
       },
       {
         "clash_mode": "global",
+        "action": "route",
         "outbound": "🚀 默认出站"
       },
       {
@@ -380,6 +387,7 @@
             "invert": true
           }
         ],
+        "action": "route",
         "outbound": "🖥️ SSH"
       },
       {
@@ -389,10 +397,12 @@
           "mangafunb.fun",
           "senzyo.net"
         ],
+        "action": "route",
         "outbound": "🚀 默认出站"
       },
       {
         "protocol": "bittorrent",
+        "action": "route",
         "outbound": "🐢 直连"
       },
       {
@@ -407,38 +417,47 @@
             "invert": true
           }
         ],
+        "action": "route",
         "outbound": "📥 Downloader"
       },
       {
         "rule_set": "geosite_category-games@cn",
+        "action": "route",
         "outbound": "🐢 直连"
       },
       {
         "rule_set": "geosite_category-games",
+        "action": "route",
         "outbound": "🎮 Game"
       },
       {
         "rule_set": ["geoip_google", "geosite_google"],
+        "action": "route",
         "outbound": "🔎 Google"
       },
       {
         "rule_set": "geosite_onedrive",
+        "action": "route",
         "outbound": "☁️ OneDrive"
       },
       {
         "rule_set": "geosite_openai",
+        "action": "route",
         "outbound": "🤖 OpenAI"
       },
       {
         "rule_set": "geosite_microsoft",
+        "action": "route",
         "outbound": "🪟 Microsoft"
       },
       {
         "rule_set": "geosite_geolocation-!cn",
+        "action": "route",
         "outbound": "🚀 默认出站"
       },
       {
         "rule_set": ["geoip_cn", "geosite_cn"],
+        "action": "route",
         "outbound": "🐢 直连"
       }
     ],

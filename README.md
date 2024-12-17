@@ -9,7 +9,7 @@
 
 <h3>
     <p align="center">
-        ⚠️ 要求 sing-box 版本 ≥ <a href="https://sing-box.sagernet.org/zh/changelog/#1100">1.10.0</a> ⚠️
+        ⚠️ 要求 sing-box 版本 ≥ <a href="https://sing-box.sagernet.org/zh/changelog/#1100">1.11.0</a> ⚠️
     </p>
 </h3>
 
@@ -107,8 +107,8 @@ https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/g
   "inbounds": [
     {
       "type": "tun",
+      "tag": "tun-in",
       "address": ["172.18.0.1/30", "fdfe:dcba:9876::1/126"],
-      "gso": false,
       "auto_route": true,
       "strict_route": true,
       "endpoint_independent_nat": false,
@@ -123,16 +123,13 @@ https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/g
           "server": "127.0.0.1",
           "server_port": 7890
         }
-      },
-      "sniff": true,
-      "sniff_override_destination": false
+      }
     },
     {
       "type": "mixed",
+      "tag": "mixed-in",
       "listen": "::",
-      "listen_port": 7890,
-      "sniff": true,
-      "sniff_override_destination": false
+      "listen_port": 7890
     }
   ],
 ```
@@ -143,10 +140,9 @@ https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/g
   "inbounds": [
     {
       "type": "mixed",
+      "tag": "mixed-in",
       "listen": "::",
-      "listen_port": 7890,
-      "sniff": true,
-      "sniff_override_destination": false
+      "listen_port": 7890
     }
   ],
 ```
