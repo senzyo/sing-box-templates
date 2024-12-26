@@ -66,7 +66,9 @@ https://raw.githubusercontent.com/senzyo/sing-box-templates/public/tun/doh/ali/g
 https://raw.githubusercontent.com/senzyo/sing-box-templates/public/mixed/doh/ali/google/testingcf.jsdelivr.net/config.json
 ```
 
-对于 Android 和 Apple, 只推荐使用入站方式为 `tun` 的模板。
+对于 Android, 推荐入站方式为 `tun` 的模板。
+
+- [ ] Apple 设备暂不可用此仓库模板, 有时间再改一下。
 
 对于 Linux 和 Windows, 随便。
 
