@@ -9,7 +9,7 @@
 
 <h3>
     <p align="center">
-        ⚠️ 要求 sing-box 版本 ≥ <a href="https://sing-box.sagernet.org/zh/changelog/">1.11.0</a> ⚠️
+        ⚠️ 要求 sing-box 版本 ≥ <a href="https://sing-box.sagernet.org/zh/changelog/#1110">1.11.0</a> ⚠️
     </p>
 </h3>
 

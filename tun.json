@@ -11,7 +11,9 @@
       "external_ui_download_url": "https://ghproxy.net/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
       "external_ui_download_detour": "🐢 直连",
       "secret": "",
-      "default_mode": "rule"
+      "default_mode": "rule",
+      "access_control_allow_origin": "*",
+      "access_control_allow_private_network": false
     },
     "cache_file": {
       "enabled": true,
@@ -62,13 +64,28 @@
         "action": "route",
         "server": "中国 DNS",
         "rewrite_ttl": 3600
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite_geolocation-!cn",
+            "invert": true
+          },
+          {
+            "rule_set": "geoip_cn"
+          }
+        ],
+        "server": "国际 DNS",
+        "client_subnet": "1.2.4.8/24"
       }
     ],
     "final": "国际 DNS",
     "strategy": "prefer_ipv4",
     "disable_cache": false,
     "disable_expire": false,
-    "independent_cache": false,
+    "independent_cache": true,
     "reverse_mapping": false
   },
   "inbounds": [
