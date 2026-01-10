@@ -135,7 +135,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "🍎 Apple",
+      "tag": "🍎Apple",
       "type": "selector",
       "outbounds": [
         "🚀FinalOut",
@@ -371,7 +371,7 @@
       },
       {
         "rule_set": "geosite-apple",
-        "outbound": "🍎 Apple"
+        "outbound": "🍎Apple"
       },
       {
         "rule_set": "geosite-category-games@cn",
