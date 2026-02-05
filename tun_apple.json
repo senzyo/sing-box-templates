@@ -51,8 +51,11 @@
         "server": "ProxyDNS"
       },
       {
-        "domain": ["gh-proxy.com", "gh-proxy.org"],
-        "server": "DirectDNS"
+        "rule_set": ["geosite-category-ads-all"],
+        "server": "DirectDNS",
+        "action": "reject",
+        "method": "default",
+        "no_drop": false
       },
       {
         "rule_set": ["geosite-category-games@cn"],
@@ -135,89 +138,6 @@
             "剩余|流量|raffic|有效|时间|到期|xpire|地址|网址|官网|自动|最优|最快"
           ]
         }
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "🍎Apple",
-      "type": "selector",
-      "outbounds": [
-        "🚀FinalOut",
-        "🐢Direct",
-        "🌏日韩台新",
-        "📌单选节点",
-        "🇭🇰香港节点",
-        "🇯🇵日本节点",
-        "🇰🇷韩国节点",
-        "🇹🇼台湾节点",
-        "🇸🇬新加坡节点",
-        "🇺🇸美国节点"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "🔎Google",
-      "type": "selector",
-      "outbounds": [
-        "🚀FinalOut",
-        "🌏日韩台新",
-        "📌单选节点",
-        "🇭🇰香港节点",
-        "🇯🇵日本节点",
-        "🇰🇷韩国节点",
-        "🇹🇼台湾节点",
-        "🇸🇬新加坡节点",
-        "🇺🇸美国节点"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "☁️OneDrive",
-      "type": "selector",
-      "outbounds": [
-        "🚀FinalOut",
-        "🐢Direct",
-        "🌏日韩台新",
-        "📌单选节点",
-        "🇭🇰香港节点",
-        "🇯🇵日本节点",
-        "🇰🇷韩国节点",
-        "🇹🇼台湾节点",
-        "🇸🇬新加坡节点",
-        "🇺🇸美国节点"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "🤖OpenAI",
-      "type": "selector",
-      "outbounds": [
-        "🚀FinalOut",
-        "🌏日韩台新",
-        "📌单选节点",
-        "🇭🇰香港节点",
-        "🇯🇵日本节点",
-        "🇰🇷韩国节点",
-        "🇹🇼台湾节点",
-        "🇸🇬新加坡节点",
-        "🇺🇸美国节点"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "🪟Microsoft",
-      "type": "selector",
-      "outbounds": [
-        "🚀FinalOut",
-        "🐢Direct",
-        "🌏日韩台新",
-        "📌单选节点",
-        "🇭🇰香港节点",
-        "🇯🇵日本节点",
-        "🇰🇷韩国节点",
-        "🇹🇼台湾节点",
-        "🇸🇬新加坡节点",
-        "🇺🇸美国节点"
       ],
       "interrupt_exist_connections": true
     },
@@ -341,8 +261,33 @@
         "action": "hijack-dns"
       },
       {
+        "rule_set": ["geosite-private"],
+        "outbound": "🐢Direct"
+      },
+      {
         "ip_is_private": true,
         "outbound": "🐢Direct"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 853
+          },
+          {
+            "network": "udp",
+            "port": 443
+          },
+          {
+            "protocol": "stun"
+          }
+        ],
+        "action": "reject"
+      },
+      {
+        "rule_set": ["geosite-category-ads-all"],
+        "action": "reject"
       },
       {
         "clash_mode": "direct",
@@ -357,44 +302,36 @@
         "outbound": "🐢Direct"
       },
       {
-        "rule_set": "geosite-apple",
-        "outbound": "🍎Apple"
-      },
-      {
-        "rule_set": "geosite-category-games@cn",
+        "rule_set": ["geosite-category-games@cn"],
         "outbound": "🐢Direct"
       },
       {
-        "rule_set": ["geoip-google", "geosite-google"],
-        "outbound": "🔎Google"
-      },
-      {
-        "rule_set": "geosite-onedrive",
-        "outbound": "☁️OneDrive"
-      },
-      {
-        "rule_set": "geosite-openai",
-        "outbound": "🤖OpenAI"
-      },
-      {
-        "rule_set": "geosite-microsoft",
-        "outbound": "🪟Microsoft"
-      },
-      {
-        "rule_set": "geosite-geolocation-!cn",
+        "rule_set": ["geosite-geolocation-!cn"],
         "outbound": "🚀FinalOut"
       },
       {
-        "rule_set": ["geoip-cn", "geosite-cn"],
+        "rule_set": ["geosite-cn"],
+        "outbound": "🐢Direct"
+      },
+      {
+        "rule_set": ["geoip-cn"],
         "outbound": "🐢Direct"
       }
     ],
     "rule_set": [
       {
-        "tag": "geosite-apple",
+        "tag": "geosite-private",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/apple.srs",
+        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/private.srs",
+        "download_detour": "🐢Direct",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite-category-ads-all",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-ads-all.srs",
         "download_detour": "🐢Direct",
         "update_interval": "3d"
       },
@@ -407,46 +344,6 @@
         "update_interval": "3d"
       },
       {
-        "tag": "geoip-google",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/google.srs",
-        "download_detour": "🐢Direct",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "geosite-google",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google.srs",
-        "download_detour": "🐢Direct",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "geosite-onedrive",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/onedrive.srs",
-        "download_detour": "🐢Direct",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "geosite-openai",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/openai.srs",
-        "download_detour": "🐢Direct",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "geosite-microsoft",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/microsoft.srs",
-        "download_detour": "🐢Direct",
-        "update_interval": "3d"
-      },
-      {
         "tag": "geosite-geolocation-!cn",
         "type": "remote",
         "format": "binary",
@@ -455,18 +352,18 @@
         "update_interval": "3d"
       },
       {
-        "tag": "geoip-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs",
-        "download_detour": "🐢Direct",
-        "update_interval": "3d"
-      },
-      {
         "tag": "geosite-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cn.srs",
+        "download_detour": "🐢Direct",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs",
         "download_detour": "🐢Direct",
         "update_interval": "3d"
       }
