@@ -270,6 +270,14 @@
         "outbound": "🐢Direct"
       },
       {
+        "clash_mode": "direct",
+        "outbound": "🐢Direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "🚀FinalOut"
+      },
+      {
         "type": "logical",
         "mode": "or",
         "rules": [
@@ -289,14 +297,6 @@
       {
         "rule_set": ["geosite-category-ads-all"],
         "action": "reject"
-      },
-      {
-        "clash_mode": "direct",
-        "outbound": "🐢Direct"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "🚀FinalOut"
       },
       {
         "protocol": "bittorrent",

@@ -57,6 +57,10 @@
         "server": "ProxyDNS"
       },
       {
+        "query_type": ["A", "AAAA"],
+        "server": "FakeIP"
+      },
+      {
         "rule_set": ["geosite-category-ads-all"],
         "server": "DirectDNS",
         "action": "reject",
@@ -276,6 +280,14 @@
         "outbound": "🐢Direct"
       },
       {
+        "clash_mode": "direct",
+        "outbound": "🐢Direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "🚀FinalOut"
+      },
+      {
         "type": "logical",
         "mode": "or",
         "rules": [
@@ -295,14 +307,6 @@
       {
         "rule_set": ["geosite-category-ads-all"],
         "action": "reject"
-      },
-      {
-        "clash_mode": "direct",
-        "outbound": "🐢Direct"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "🚀FinalOut"
       },
       {
         "protocol": "bittorrent",
